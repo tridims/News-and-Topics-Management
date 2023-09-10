@@ -38,13 +38,13 @@
       }
     },
     "migrate-db": {
-      "command": "prisma migrate dev",
+      "command": "prisma migrate dev --name init",
       "options": {
         "cwd": "modules/prisma"
       }
     },
-    "db-push": {
-      "command": "prisma db push",
+    "db-reset": {
+      "command": "prisma db push --force-reset",
       "options": {
         "cwd": "modules/prisma"
       }

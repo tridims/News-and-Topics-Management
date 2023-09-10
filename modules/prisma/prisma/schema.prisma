@@ -12,15 +12,24 @@ datasource db {
 
 // prisma schema that have news and topcs. they are one-to-many reelations with each other
 model News {
-  id      Int         @id @default(autoincrement())
-  title   String
+  id      Int    @id @default(autoincrement())
+  slug    String @unique
+  title   String @unique
   content String
-  topics  NewsTopic[]
+  status  Status @default(DRAFT)
+
+  topics NewsTopic[]
+}
+
+enum Status {
+  PUBLISHED
+  DRAFT
+  DELETED
 }
 
 model Topic {
   id   Int         @id @default(autoincrement())
-  name String
+  name String      @unique
   news NewsTopic[]
 }
 
