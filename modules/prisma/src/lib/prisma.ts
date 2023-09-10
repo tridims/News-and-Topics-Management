@@ -1,3 +1,5 @@
-export function prisma(): string {
-  return 'prisma';
-}
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+export default prisma;

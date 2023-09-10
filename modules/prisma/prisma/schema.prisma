@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// prisma schema that have news and topcs. they are one-to-many reelations with each other
+model News {
+  id      Int         @id @default(autoincrement())
+  title   String
+  content String
+  topics  NewsTopic[]
+}
+
+model Topic {
+  id   Int         @id @default(autoincrement())
+  name String
+  news NewsTopic[]
+}
+
+// many to may relations for news and topics
+model NewsTopic {
+  newsId  Int
+  news    News  @relation(fields: [newsId], references: [id])
+  topicId Int
+  topic   Topic @relation(fields: [topicId], references: [id])
+
+  @@id([newsId, topicId])
+}

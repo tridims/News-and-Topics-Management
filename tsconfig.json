@@ -14,7 +14,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "prisma": ["modules/prisma/src/index.ts"]
+      "prisma": ["modules/prisma/src/index.ts"],
+      "topics": ["modules/topics/src/index.ts"]
     },
     "esModuleInterop": true
   },

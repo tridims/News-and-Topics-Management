@@ -24,6 +24,36 @@
           "codeCoverage": true
         }
       }
+    },
+    "prisma": {
+      "command": "prisma",
+      "options": {
+        "cwd": "modules/prisma"
+      }
+    },
+    "generate-types": {
+      "command": "prisma generate",
+      "options": {
+        "cwd": "modules/prisma"
+      }
+    },
+    "migrate-db": {
+      "command": "prisma migrate dev",
+      "options": {
+        "cwd": "modules/prisma"
+      }
+    },
+    "db-push": {
+      "command": "prisma db push",
+      "options": {
+        "cwd": "modules/prisma"
+      }
+    },
+    "prisma-studio": {
+      "command": "prisma studio",
+      "options": {
+        "cwd": "modules/prisma"
+      }
     }
   },
   "tags": []

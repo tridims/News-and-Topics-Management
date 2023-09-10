@@ -3,14 +3,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "nx serve | pino-pretty",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "prepare-db-container": "docker run --name fastify-postgres -e POSTGRES_PASSWORD=localpassword -p 5432:5432 -d postgres",
+    "db-push": "nx db-push prisma"
   },
   "private": true,
   "dependencies": {
     "@fastify/autoload": "~5.7.1",
     "@fastify/sensible": "~5.2.0",
+    "@prisma/client": "5.2.0",
     "axios": "^1.0.0",
     "fastify": "~4.13.0",
     "fastify-plugin": "~4.5.0",
@@ -36,6 +39,7 @@
     "nx": "16.8.1",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
+    "prisma": "5.2.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.1.3"
