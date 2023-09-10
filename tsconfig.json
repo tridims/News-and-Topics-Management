@@ -13,7 +13,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "prisma": ["modules/prisma/src/index.ts"]
+    },
     "esModuleInterop": true
   },
   "files": [],
