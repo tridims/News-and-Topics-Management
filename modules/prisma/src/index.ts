@@ -39,3 +39,5 @@ export interface PrismaPluginOptions {
 export default fp(PrismaPlugin, {
   name: 'fastify-prisma'
 });
+
+export { prisma };
