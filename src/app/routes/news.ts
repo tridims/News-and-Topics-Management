@@ -1,6 +1,19 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 
+export enum NewsStatus {
+  PUBLISHED = 'PUBLISHED',
+  DRAFT = 'DRAFT',
+  DELETED = 'DELETED'
+}
+
 export default async function (fastify: FastifyInstance) {
+  /**
+   * Test route
+   */
+  fastify.get('/news/test', async function (request, reply) {
+    reply.send({ hello: 'world' });
+  });
+
   /**
    * GET All News
    * filter by status and topics
@@ -57,12 +70,6 @@ export default async function (fastify: FastifyInstance) {
       reply.send(news);
     }
   );
-
-  enum NewsStatus {
-    PUBLISHED = 'PUBLISHED',
-    DRAFT = 'DRAFT',
-    DELETED = 'DELETED'
-  }
 
   /**
    * GET News by ID
