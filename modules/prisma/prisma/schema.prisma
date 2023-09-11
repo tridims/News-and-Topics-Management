@@ -36,9 +36,9 @@ model Topic {
 // many to may relations for news and topics
 model NewsTopic {
   newsId  Int
-  news    News  @relation(fields: [newsId], references: [id])
+  news    News  @relation(fields: [newsId], references: [id], onDelete: Cascade)
   topicId Int
-  topic   Topic @relation(fields: [topicId], references: [id])
+  topic   Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
   @@id([newsId, topicId])
 }
