@@ -15,13 +15,13 @@ export async function app(fastify: FastifyInstance, opts: AppOptions) {
   // through your application
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'plugins'),
-    options: { ...opts },
+    options: { ...opts }
   });
 
   // This loads all plugins defined in routes
   // define your routes in one of these
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'routes'),
-    options: { ...opts },
+    options: { ...opts }
   });
 }
