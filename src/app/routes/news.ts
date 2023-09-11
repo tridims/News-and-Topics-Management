@@ -3,16 +3,57 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 export default async function (fastify: FastifyInstance) {
   /**
    * GET All News
+   * filter by status and topics
    */
   fastify.get(
     '/news',
-    async function (request: FastifyRequest, reply: FastifyReply) {
-      const news = await fastify.prisma.news.findMany({
-        where: { status: 'PUBLISHED' },
-        include: {
-          topics: true
-        }
-      });
+    async function (
+      request: FastifyRequest<{
+        Querystring: {
+          status?: 'draft' | 'published' | 'deleted';
+          topics?: string;
+        };
+      }>,
+      reply: FastifyReply
+    ) {
+      const status: NewsStatus[] = (request.query.status
+        ?.split(',')
+        ?.map((status) => status.toUpperCase()) as NewsStatus[]) || [
+        'PUBLISHED' as NewsStatus
+      ];
+
+      const topics = request.query.topics?.split(',') || [];
+
+      const news = await fastify.prisma.news
+        .findMany({
+          where: {
+            AND: [
+              {
+                status: {
+                  in: status
+                }
+              },
+              {
+                topics: {
+                  every: {
+                    topic: {
+                      name: {
+                        in: topics
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          include: {
+            topics: true
+          }
+        })
+        .catch((err) => {
+          return this.httpErrors.badRequest('Check your query');
+        });
+
       reply.send(news);
     }
   );
