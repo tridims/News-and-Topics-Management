@@ -1,7 +1,7 @@
 import Fastify, { FastifyInstance } from 'fastify';
-import { app } from './app';
+import { app } from '../app';
 import fp from 'fastify-plugin';
-import TopicsRoutes from './routes/topics';
+import TopicsRoutes from '../routes/topics';
 import { PrismaClient } from '@prisma/client';
 
 describe('root path', () => {
